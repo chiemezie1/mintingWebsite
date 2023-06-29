@@ -1,3 +1,4 @@
+import './MainMint.css';
 import React from "react";
 import { useState } from "react";
 import {ethers, BigNumber} from "ethers";
@@ -36,10 +37,10 @@ const MainMint = ({accounts, setAcounts}) => {
 
     return(
         <div>
-            <dive>
-                EmeziE NFT
-            </dive>
-            <dive> </dive>
+            <div className="titile">
+                Emezie NFT
+            </div>
+            <div> </div>
             {
                 isConnected ? (
                     <div>
