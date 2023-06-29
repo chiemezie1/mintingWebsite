@@ -5,11 +5,14 @@ import MainMint from "./components/MainMint";
 import NavBar from "./components/NavBar";
 
 function App() {
-  const [accounts, setAcounts] = useState([]);
+  const [accounts, setAccounts] = useState([]);
   return (
-    <div className="App">
-      <NavBar accounts={accounts} setAcounts={setAcounts} />
-      <MainMint accounts={accounts} setAcounts={setAcounts} />
+    <div className='overlay'>
+      <div className="App">
+        <NavBar accounts={accounts} setAccounts={setAccounts} />
+        <MainMint accounts={accounts} setAccounts={setAccounts} />
+      </div>
+      <div className='moving-background'></div>
     </div>
   );
 }

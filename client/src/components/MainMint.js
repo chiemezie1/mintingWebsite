@@ -6,7 +6,7 @@ import EmezieNFT from "../contract/emezieNFT.json"
 
 
 const MainMint = ({accounts, setAcounts}) => {
-    const [mintAmount, setMintAmount] = useState("");
+    const [mintAmount, setMintAmount] = useState(1);
     const isConnected = Boolean(accounts[0]);
 
     async function handleMint(){
@@ -16,7 +16,8 @@ const MainMint = ({accounts, setAcounts}) => {
             const contract = new ethers.Contract(EmezieNFT.address, EmezieNFT.abi, signer);
 
             try{
-
+                const response = await contract.mint(BigNumber.from(mintAmount));
+                console.log("response:", response)
             }
             catch (error){
                 console.log("error:", error)
@@ -24,10 +25,39 @@ const MainMint = ({accounts, setAcounts}) => {
         }
 
     }
+    const handleDecreemenrt = () =>{
+        if(mintAmount <= 1) return;
+        setMintAmount(mintAmount - 1);
+    }
+    const handleIncreemenrt = () =>{
+        if(mintAmount >= 3) return;
+        setMintAmount(mintAmount + 1);
+    }
 
     return(
         <div>
+            <dive>
+                EmeziE NFT
+            </dive>
+            <dive> </dive>
+            {
+                isConnected ? (
+                    <div>
+                    <div >
+                        <button onClick={handleDecreemenrt}>-</button>
+                        <input type="number" value={mintAmount}/>
+                        <button onClick={handleIncreemenrt} >+</button>
+                    </div>
+                    <button onClick={handleMint}>Mint Now</button>
+                    </div>
 
+                ):(
+                    <div>
+                    <div>Not connected</div>
+                    <p>please connect</p>
+                    </div>
+                )
+            };
         </div>
     )
 };
