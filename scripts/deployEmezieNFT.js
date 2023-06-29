@@ -18,7 +18,7 @@ async function main() {
   };
 
   //This writes the ABI and address to the emezieNFT.json
-  fs.writeFileSync('../client/src/contract/emezieNFT.json', JSON.stringify(data));
+  fs.writeFileSync('../../client/src/contract/emezieNFT.json', JSON.stringify(data));
 }
 
 main()
