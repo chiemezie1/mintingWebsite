@@ -36,27 +36,32 @@ const MainMint = ({ accounts, setAcounts }) => {
     }
 
     return (
-        <div>
-            <div className="titile"> Emezie NFT </div>
-            {
-                isConnected ? (
-                    <div>
-                        <div >
-                            <button onClick={handleDecreemenrt}>-</button>
-                            <input type="number" value={mintAmount} />
-                            <button onClick={handleIncreemenrt} >+</button>
-                        </div>
-                        <button onClick={handleMint}>Mint Now</button>
+        <div className="component-container">
+            <div className="title">Emezie NFT</div>
+            {isConnected ? (
+                <div className='button-mint'>
+                    <div className="button-container">
+                        <button onClick={handleDecreemenrt}>-</button>
+                        <input type="number" value={mintAmount} />
+                        <button onClick={handleIncreemenrt}>+</button>
                     </div>
-
-                ) : (
-                    <div>
-                        <div>Not connected</div>
-                        <p>please connect</p>
-                    </div>
-                )
-            }
+                    <button className="mint-button" onClick={handleMint}>
+                        Mint Now
+                    </button>
+                </div>
+            ) : (
+                <div className="not-connected-container">
+                    <div className="not-connected">Not connected</div>
+                    <p className="connect-message">Please connect</p>
+                </div>
+            )}
+            <div className="cover"></div>
+            <div className="motivating-text">
+                Unlock the power of creativity<br />
+                Embrace meaningful NFTs<br />
+                Join the revolution
+            </div>
         </div>
-    )
+    );
 };
 export default MainMint;

@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom"
 import { useState } from 'react';
 import MainMint from "./components/MainMint";
 import NavBar from "./components/NavBar";
-import TeamPage from "./components/TeamPage ";
+import Terms from "./components/Terms";
 import AboutUs from "./components/AboutUs";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainMint accounts={accounts} setAccounts={setAccounts} />} />
           <Route path="AboutUs" element={<AboutUs />} />
-          <Route path="TeamPage" element={<TeamPage />} />
+          <Route path="Terms" element={<Terms />} />
         </Routes>
       </div>
       <div className='moving-background'></div>

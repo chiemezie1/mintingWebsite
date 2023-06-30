@@ -3,6 +3,7 @@ import './AboutUs.css';
 
 const AboutUs = () => {
   return (
+    <div className="container">
     <div className="about-us-container">
       <h1 className="about-us-heading">About EmezieNFT</h1>
       <p className="about-us-description">
@@ -37,6 +38,7 @@ const AboutUs = () => {
         Together, let's redefine the boundaries of digital art, elevate its significance, and create a lasting legacy through the power of meaningful NFTs.
       </p>
       <p className="about-us-welcome">Welcome to EmezieNFT, where art meets purpose.</p>
+    </div>
     </div>
   );
 };

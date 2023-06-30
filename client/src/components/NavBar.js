@@ -25,7 +25,7 @@ const NavBar = ({ accounts, setAccounts }) => {
             <Flex justify="space-between" align="center" padding="30px">
                 <Link to="/" style={{ margin: '0 15px' }}>Home</Link>
                 <Link to="/AboutUS" style={{ margin: '0 15px' }}>About</Link>
-                <Link to="/TeamPage" style={{ margin: '0 15px' }}>Team</Link>
+                <Link to="/Terms" style={{ margin: '0 15px' }}>Terms</Link>
 
                 {isConnected ? (
                     <Box>connected</Box>
