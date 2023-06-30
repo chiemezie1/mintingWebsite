@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Button, Flex, Image, Link, Spacer } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Box, Button, Flex, Image, Spacer } from "@chakra-ui/react";
 
 const NavBar = ({ accounts, setAccounts }) => {
     const isConnected = accounts[0] ? true : false;
@@ -14,20 +15,34 @@ const NavBar = ({ accounts, setAccounts }) => {
     }
 
     return (
-        <Flex justify="space-between" align="center" padding="20px" backgroundColor="black"
-            opacity={0.5}>
-            <div>Facebook</div>
-            <div>Twitter</div>
-            <div>Email</div>
+        <Flex justify="space-between" align="center" padding="8px" backgroundColor="black" opacity={0.5}>
+            <Flex justify="flex-start" align="center">
+                <div>Facebook</div>
+                <div>Twitter</div>
+                <div>Email</div>
+            </Flex>
 
             <Flex justify="space-between" align="center" padding="30px">
-                <Box margin="0 15px">About</Box>
-                <Box margin="0 15px">Mint</Box>
-                <Box margin="0 15px">Team</Box>
+                <Link to="/" style={{ margin: '0 15px' }}>Home</Link>
+                <Link to="/AboutUS" style={{ margin: '0 15px' }}>About</Link>
+                <Link to="/TeamPage" style={{ margin: '0 15px' }}>Team</Link>
+
                 {isConnected ? (
-                    <div>connected</div>
+                    <Box>connected</Box>
                 ) : (
-                    <button onClick={connectAccount}>connect</button>
+                    <Button
+                        backgroundColor="orange"
+                        borderRadius="8px"
+                        dropShadow="0px 2px 2px 1px #0F0F0F"
+                        color="red"
+                        cursor="pointer"
+                        paddingX="16px"
+                        paddingY="8px"
+                        margin="0 15px"
+                        onClick={connectAccount}
+                    >
+                        connect
+                    </Button>
                 )}
             </Flex>
         </Flex>

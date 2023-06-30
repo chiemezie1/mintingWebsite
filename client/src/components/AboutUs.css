@@ -1,0 +1,86 @@
+body {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .about-us-container {
+    text-align: center;
+    margin: 8px;
+    padding: 40px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    color: #000000;
+  }
+  
+  .about-us-heading {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .about-us-description {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: 'Muli', sans-serif;
+  }
+  
+  .about-us-features {
+    margin-top: 40px;
+  }
+  
+  .feature-heading {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .feature-description {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Muli', sans-serif;
+  }
+  
+  .feature-list {
+    list-style-type: disc;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    font-family: 'Muli', sans-serif;
+  }
+  .feature-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .feature-list {
+    list-style-type: none;
+    list-style-type: disc;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    width: 50%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature-list li {
+    font-size: 18px;
+    list-style-type: none;
+    margin-bottom: 10px;
+    font-family: 'Muli', sans-serif;
+    color: #333333;
+  }
+  
+  .about-us-join {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: 'Muli', sans-serif;
+  }
+  
+  .about-us-welcome {
+    font-family: 'Tangerine', cursive;
+    font-size: 42px;
+    margin-top: 40px;
+  }
+  
