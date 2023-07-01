@@ -25,7 +25,6 @@ The smart contract EmezieNFT.sol is the core component of the project, which inh
 Before getting started, ensure that you have the following prerequisites installed on your machine:
 
 [Node.js](https://nodejs.org/)- Install Node.js and npm globally on your system (Node Package Manager) .
-
 [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation) - Install Hardhat, a development environment for Ethereum projects.
 
 ## Installation
