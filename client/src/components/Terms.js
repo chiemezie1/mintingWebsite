@@ -6,8 +6,8 @@ import './Terms.css';
 const Terms = () => {
   return (
     <div className="terms-container">
-      <h1 className="terms-heading">Terms and Conditions</h1>
       <div className="terms-content">
+      <h1 className="terms-heading">Terms and Conditions</h1>
         <h2>1. Acceptance of Terms</h2>
         <p>
           By accessing or using EmezieNFT, you confirm that you have read, understood, and agree to comply with this Agreement, including any future modifications.

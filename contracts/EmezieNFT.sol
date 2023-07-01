@@ -3,26 +3,36 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
-contract EmezieNFT is ERC721, Ownable {
+contract EmezieNFT is ERC721, Ownable, ERC721Enumerable {
+
+    using SafeMath for uint256;
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
     uint256 public mintPrice;
-    uint256 public totalSupply;
     uint256 public maxPerWallet;
     uint256 public maxSupply;
     bool public isPublicMintEnable;
     string internal baseTokenUrl;
+    string internal baseExtension;
     address payable public withdrawWallet;
+    uint _totalSupply= totalSupply();
+
+  
+
     mapping(address => uint256) public walletMints;
+    mapping(address => bool) public whitelisted;
 
     constructor() payable ERC721("EmezieNFT", "ENFT") {
     }
-
+    
+   //set functions
     function setMintPrice(uint256 _mintPrice) external onlyOwner {
     mintPrice = _mintPrice * 1 ether;
-    }
-
-    function setTotalSupply(uint256 _totalSupply) external onlyOwner {
-        totalSupply = _totalSupply;
     }
 
     function setMaxPerWallet(uint256 _maxPerWallet) external onlyOwner {
@@ -45,6 +55,10 @@ contract EmezieNFT is ERC721, Ownable {
         withdrawWallet = _withdrawWallet;
     }
 
+     function setBaseExtension(string calldata _newBaseExtension) public onlyOwner {
+        baseExtension = _newBaseExtension;
+    }
+
     function isOwner(address _address) public view returns (bool) {
         return owner() == _address;
     }
@@ -54,7 +68,14 @@ contract EmezieNFT is ERC721, Ownable {
 
         // Construct the URI for the token's metadata
         // by concatenating the base URL, token ID, and file format extension.
-        return string(abi.encodePacked(baseTokenUrl, Strings.toString(_tokenId), "json"));
+        return string(abi.encodePacked(baseTokenUrl, Strings.toString(_tokenId), baseExtension));
+    }
+
+    function whitelistUser(address _user) public onlyOwner {
+        whitelisted[_user] = true;
+    }
+    function unWhitelistUser(address _user) public onlyOwner {
+        whitelisted[_user] = false;
     }
 
     function withdraw() external onlyOwner {
@@ -62,21 +83,46 @@ contract EmezieNFT is ERC721, Ownable {
         require(success, "Withdraw failed");
     }
 
-    function mint(uint256 _quantity) public payable {
-        require(isPublicMintEnable, "Minting not enabled");
-        require(msg.value == _quantity * mintPrice, "Wrong mint value");
-        require(totalSupply + _quantity <= maxSupply, "Sold out");
-        require(walletMints[msg.sender] + _quantity <= maxPerWallet, "Max value per wallet exceeded");
+   function mint(uint256 _quantity) public payable returns (uint256[] memory) {
+    require(whitelisted[msg.sender] != true, "You have been whitelisted");
+    require(_quantity < 10,"exceeded Max per mint");
+    require(isPublicMintEnable, "Minting not enabled");
+    require(msg.value >= _quantity * mintPrice, "Wrong mint value");
+    require(_tokenIds.current() + _quantity <= maxSupply, "Sold out");
+    require(walletMints[msg.sender] + _quantity <= maxPerWallet, "Max value per wallet exceeded");
 
-        for (uint256 i = 0; i < _quantity; i++) {
-            uint256 newTokenId = totalSupply + 1;
-            totalSupply++;
-            _safeMint(msg.sender, newTokenId);
-        }
+    uint256[] memory mintedTokenIds = new uint256[](_quantity);
+
+    for (uint256 i = 0; i < _quantity; i++) {
+        _tokenIds.increment();
+        uint256 newTokenId = _tokenIds.current();
+        mintedTokenIds[i] = newTokenId;
+        _safeMint(msg.sender, newTokenId);
+    }
+
+    return mintedTokenIds;
     }
 
     function transferOwnership(address newOwner) public override onlyOwner {
         require(newOwner != address(0), "Invalid address");
         _transferOwnership(newOwner);
+    }
+
+     // The following functions are overrides required by Solidity.
+
+    function _beforeTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize)
+        internal
+        override(ERC721, ERC721Enumerable)
+    {
+        super._beforeTokenTransfer(from, to, tokenId, batchSize);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
     }
 }
