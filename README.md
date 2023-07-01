@@ -21,6 +21,7 @@ The smart contract EmezieNFT.sol is the core component of the project, which inh
 + Transfer Ownership: The owner can transfer ownership of the contract to another address by calling the transferOwnership function.
 
 ## Prerequisites
+
 Before getting started, ensure that you have the following prerequisites installed on your machine:
 
 [Node.js](https://nodejs.org/)- Install Node.js and npm globally on your system (Node Package Manager) .
@@ -94,6 +95,7 @@ npm install
 ```
 
 Start the React application.
+
 ```
 npm start
 ```
