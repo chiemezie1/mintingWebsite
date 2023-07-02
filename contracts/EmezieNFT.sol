@@ -29,8 +29,7 @@ contract EmezieNFT is ERC721, Ownable, ERC721Enumerable {
 
     constructor() payable ERC721("EmezieNFT", "ENFT") {
     }
-    
-   //set functions
+
     function setMintPrice(uint256 _mintPrice) external onlyOwner {
     mintPrice = _mintPrice * 1 ether;
     }
@@ -45,6 +44,10 @@ contract EmezieNFT is ERC721, Ownable, ERC721Enumerable {
 
     function setIsPublicMintEnable(bool _isPublicMintEnable) external onlyOwner {
         isPublicMintEnable = _isPublicMintEnable;
+    }
+
+    function getIsPublicMintEnable() external view returns (bool) {
+        return isPublicMintEnable;
     }
 
     function setBaseTokenUrl(string calldata _baseTokenUrl) external onlyOwner {
@@ -102,6 +105,8 @@ contract EmezieNFT is ERC721, Ownable, ERC721Enumerable {
 
     return mintedTokenIds;
     }
+
+
 
     function transferOwnership(address newOwner) public override onlyOwner {
         require(newOwner != address(0), "Invalid address");
