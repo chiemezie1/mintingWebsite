@@ -53,6 +53,9 @@ contract EmezieNFT is ERC721, Ownable, ERC721Enumerable {
     function setBaseTokenUrl(string calldata _baseTokenUrl) external onlyOwner {
         baseTokenUrl = _baseTokenUrl;
     }
+    function getBaseTokenUrl() external view returns (string memory) {
+    return baseTokenUrl;
+    }
 
     function setWithdrawWallet(address payable _withdrawWallet) external onlyOwner {
         withdrawWallet = _withdrawWallet;
